@@ -35,7 +35,7 @@ class Chicken{
     private double calculateProductPerDay(){
         if (getAge() < 6)
             return 2;
-        if (getAge() > 6 && getAge()<13)
+        if (getAge() >= 6 && getAge()<13)
             return 1;
         else
             return 0.75;
