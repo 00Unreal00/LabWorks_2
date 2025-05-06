@@ -10,26 +10,26 @@ class Human {
     }
 
     public String getFirstName() {
-        return firstName;}
+        return this.firstName;}
     private void setFirstName(String firstName){
         if(!Character.isUpperCase(firstName.charAt(0))) {
-            System.out.println("Должно начинатся с большой буквы");
+            System.out.println("Имя должно начинатся с большой буквы");
             throw new IllegalArgumentException("Expected upper case letter! Argument: firstName");
         }else if(firstName.length() < 4){
-            System.out.println("Должно быть не менее 4 символов длиной");
+            System.out.println("Имя должно быть не менее 4 символов длиной");
             throw new IllegalArgumentException("Expected length at least 4 symbols! Argument: firstName");
         }
         else
             this.firstName = firstName;
     }
     public String getLastName() {
-        return lastName;}
+        return this.lastName;}
     protected void setLastName(String lastName){
         if(!Character.isUpperCase(lastName.charAt(0))) {
-            System.out.println("Должно начинатся с большой буквы");
+            System.out.println("Фамилия должна начинатся с большой буквы");
             throw new IllegalArgumentException("Expected upper case letter! Argument: lastName");
         }else if(lastName.length() < 3){
-            System.out.println("Должно быть не менее 3 символов длиной");
+            System.out.println("Фамилия должна быть не менее 3 символов длиной");
             throw new IllegalArgumentException("Expected length at least 3 symbols! Argument: lastName");
         }
         else
@@ -46,7 +46,7 @@ class Student extends Human{
     }
 
     public String getFacultyNumber() {
-        return facultyNumber;
+        return this.facultyNumber;
     }
 
     private void setFacultyNumber(String facultyNumber){
@@ -78,10 +78,11 @@ class Worker extends Human{
         if (lastName.length() <= 3) {
             throw new IllegalArgumentException("Expected length more than 3 symbols! Argument: lastName");
         }
-        super.setLastName(lastName);
+        else
+            super.setLastName(lastName);
     }
     public double getWeekSalary() {
-        return weekSalary;}
+        return this.weekSalary;}
 
     private void setWeekSalary(double weekSalary){
         if(weekSalary <= 10)
@@ -91,7 +92,7 @@ class Worker extends Human{
     }
 
     public double getWorkHoursPerDay() {
-        return workHoursPerDay;}
+        return this.workHoursPerDay;}
 
     private void setWorkHoursPerDay(double workHoursPerDay){
         if(workHoursPerDay >= 1 && workHoursPerDay <=12)
@@ -110,17 +111,29 @@ class Worker extends Human{
     }
 }
 public class Work_5_2 {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        String[] s = {};
-        while (s.length != 3){
-        s = scanner.nextLine().split(" ");}
-        Student student = new Student(s[0],s[1],s[2]);
-        String[] w = {};
-        while (w.length != 4){
-            w = scanner.nextLine().split(" ");}
-        Worker worker = new Worker(w[0],w[1], Double.parseDouble(w[2]), Double.parseDouble(w[3]));
-        System.out.println(student.toString());
-        System.out.println(worker.toString());
+        String[] s;
+        Student student;
+        Worker worker;
+        while (true){
+        try {
+        System.out.println("Введите через пробел Имя Фамилию и факультет");
+        s = scanner.nextLine().split(" ");
+        student = new Student(s[0],s[1],s[2]);
+        break;}
+        catch(Exception _){System.out.println("Повторите ввод");}
+        }
+        String[] w;
+        while (true){
+            try {
+                System.out.println("Введите через пробел Имя Фамилию зарплату и кол-во рабочих часов");
+                w = scanner.nextLine().split(" ");
+                worker = new Worker(w[0],w[1], Double.parseDouble(w[2]), Double.parseDouble(w[3]));
+                break;}
+            catch(Exception _){System.out.println("Повторите ввод");}
+        }
+        System.out.println(student);
+        System.out.println(worker);
     }
 }

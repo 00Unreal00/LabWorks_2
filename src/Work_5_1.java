@@ -120,7 +120,7 @@ class Airplane extends Vehicle{
     }
 
     public boolean isHydroplane() {
-        return isHydroplane;
+        return this.isHydroplane;
     }
 
     private void setHydroplane(boolean isHydroplane) {
